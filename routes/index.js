@@ -6,4 +6,7 @@ router.get("/", (req, res) => {
 })
 
 
+const userRoutes = require('./userRoutes');
+router.use("/api/users", userRoutes);
+
 module.exports = router;
