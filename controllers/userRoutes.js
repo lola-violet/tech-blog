@@ -40,7 +40,7 @@ router.get("/:id", (req, res) => {
 // });
 
 // Create a new user
-router.post("/", (req, res) => {
+router.post("/signup", (req, res) => {
     User.create(req.body)
       .then(newUser => {
         req.session.user = {
