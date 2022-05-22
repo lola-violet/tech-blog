@@ -1,14 +1,15 @@
 <div class="container">
     <div class="row d-flex justify-content-center mt-5">
     {{#each blogs}}
-        <div class="card col-12 col-lg-10">
+        <div class="card col-12 col-lg-10" value={{id}}>
             <div class="card-body">
-              <h5 class="card-title">{{title}}</h5>
-              <p class="card-text">{{createdAt}}</p>
-              <a href="#" class="btn btn-dark">Read More</a>
+              <h5 class="card-title" value={{id}}>{{title}}</h5>
+
+              <p class="card-text" value={{id}}>{{updatedAt}}</p>
+              <button class="blog btn btn-dark">Read More</button>
             </div>
         </div>
     {{/each}}
     </div>
 </div>
-{{!-- <script src="/js/homepage.js"></script> --}}
+<script src="/js/home.js"></script>
