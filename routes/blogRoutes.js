@@ -4,7 +4,9 @@ const {User, Blog, Comment} = require('../models/');
 
 // Find all blogs
 router.get("/", (req, res) => {
-    Blog.findAll()
+    Blog.findAll({
+        include: [User, Comment]
+    })
     .then(dbBlogs => {
         res.json(dbBlogs);
     })
@@ -16,7 +18,9 @@ router.get("/", (req, res) => {
 
 // Find one blog by ID
 router.get("/:id", (req, res) => {
-    Blog.findByPk(req.params.id)
+    Blog.findByPk(req.params.id, {
+        include: [User, Comment]
+    })
     .then(dbBlog => {
         res.json(dbBlog);
     })
