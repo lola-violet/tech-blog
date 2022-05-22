@@ -46,4 +46,19 @@ router.get("/dashboard", (req, res) => {
 })
 
 
+router.get("/blog/:id", (req, res) => {
+    Blog.findByPk(req.params.id, {
+        include: [{
+            model: Comment,
+            include: [User]
+        }, User],
+        nest: true,
+    }).then(blogData => {
+        const data = blogData.get({ plain: true })
+        data.loggedIn = req.session.user ? true : false
+        data.username = req.session.user?.username
+        res.render("blog", data)
+    })
+})
+
 module.exports = router;
