@@ -24,22 +24,18 @@
         <h1>My Posts</h1>
     </div>
     <div class="row d-flex justify-content-center my-4">
-    {{!-- {{#each userBlogs}} --}}
+    {{#each userBlogs}}
         <div class="card col-12">
             <div class="card-body">
-                    {{!-- <input type="text" class="form-control form-control-lg mt-3" value="{{title}}">
-                    <input type="text" class="form-control" value="{{body}}">
-                    <p>Posted on {{updatedAt}}</p>
-                    <button class="deleteBtn btn btn-secondary me-4" value={{id}}>Delete</button>
-                    <button class="updateBtn btn btn-secondary" value={{id}}>Update</button> --}}
+
               <h5 class="card-title">
-                  {{!-- {{userBlogs.title}} --}}
+                  {{userBlogs.title}}
                   </h5>
               <p class="card-text">Date of Creation</p>
               <a href="#" class="btn btn-dark">Read More</a>
             </div>
         </div>
-    {{!-- {{/each}} --}}
+    {{/each}}
     </div>
 
 </div>
