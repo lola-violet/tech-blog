@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const {User, Blog, Comment} = require('../models/');
 
-// Find all users
+// Find all comments
 router.get("/", (req, res) => {
-    User.findAll()
-    .then(dbUsers => {
-        res.json(dbUsers);
+    Comment.findAll()
+    .then(dbComments => {
+        res.json(dbComments);
     })
     .catch(err => {
         console.log(err);
@@ -14,11 +14,11 @@ router.get("/", (req, res) => {
     })
 });
 
-// Find one user by ID
+// Find one comment by ID
 router.get("/:id", (req, res) => {
-    User.findByPk(req.params.id)
-    .then(dbUser => {
-        res.json(dbUser);
+    Comment.findByPk(req.params.id)
+    .then(dbComment => {
+        res.json(dbComment);
     })
     .catch(err => {
         console.log(err);
@@ -26,11 +26,11 @@ router.get("/:id", (req, res) => {
     })
 });
 
-// Create new user
+// Create new comment
 router.post("/", (req, res) => {
-    User.create(req.body)
-    .then(newUser => {
-        res.json(newUser);
+    Comment.create(req.body)
+    .then(newComment => {
+        res.json(newComment);
     })
     .catch(err => {
         console.log(err);
@@ -38,15 +38,15 @@ router.post("/", (req, res) => {
     })
 });
 
-// Update existing user by ID
+// Update existing comment by ID
 router.put("/:id", (req, res) => {
-    User.update(req.body, {
+    Comment.update(req.body, {
         where: {
             id: req.params.id
         }
     })
-    .then(updatedUser => {
-        res.json(updatedUser);
+    .then(updatedComment => {
+        res.json(updatedComment);
     })
     .catch(err => {
         console.log(err);
@@ -54,15 +54,15 @@ router.put("/:id", (req, res) => {
     })
 });
 
-// Delete user by ID
+// Delete comment by ID
 router.delete("/:id", (req, res) => {
-    User.destroy({
+    Comment.destroy({
         where: {
             id: req.params.id
         }
     })
-    .then(deletedUser => {
-        res.json(deletedUser);
+    .then(deletedComment => {
+        res.json(deletedComment);
     })
     .catch(err => {
         console.log(err);

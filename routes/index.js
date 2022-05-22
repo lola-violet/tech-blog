@@ -12,4 +12,7 @@ router.use("/api/users", userRoutes);
 const blogRoutes = require('./blogRoutes');
 router.use("/api/blogs", blogRoutes);
 
+const commentRoutes = require('./commentRoutes');
+router.use("/api/comments", commentRoutes);
+
 module.exports = router;

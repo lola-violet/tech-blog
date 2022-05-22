@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Blog = require('../models/Blog');
+const {User, Blog, Comment} = require('../models/');
 
 // Find all blogs
 router.get("/", (req, res) => {
@@ -68,7 +68,7 @@ router.delete("/:id", (req, res) => {
         console.log(err);
         res.status(500).json({ msg: "500 Internal Server Error", err });
     })
-})
+});
 
 
 module.exports = router;
