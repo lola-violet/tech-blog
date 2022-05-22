@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {User, Blog, Comment} = require('../models/');
+const bcrypt  = require("bcrypt");
 
 // Find all users
 router.get("/", (req, res) => {
@@ -27,16 +28,57 @@ router.get("/:id", (req, res) => {
 });
 
 // Create new user
+// router.post("/", (req, res) => {
+//     User.create(req.body)
+//     .then(newUser => {
+//         res.json(newUser);
+//     })
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json({ msg: "500 Internal Server Error", err });
+//     })
+// });
+
+// Create a new user
 router.post("/", (req, res) => {
     User.create(req.body)
-    .then(newUser => {
+      .then(newUser => {
+        req.session.user = {
+          id:newUser.id,
+          username:newUser.username
+        }
         res.json(newUser);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({ msg: "500 Internal Server Error", err });
+    })
+  });
+
+router.post("/login", (req, res) => {
+    User.findOne({
+      where:{
+      username:req.body.username
+    }
+    }).then(foundUser=>{
+      if(!foundUser){
+        return res.status(400).json({msg:"Incorrect login credentials"})
+      }
+      if(bcrypt.compareSync(req.body.password,foundUser.password)){
+        req.session.user = {
+          id:foundUser.id,
+          username:foundUser.username
+        }
+        return res.json(foundUser)
+      } else {
+        return res.status(400).json({msg:"Incorrect login credentials"})
+      }
     })
     .catch(err => {
         console.log(err);
         res.status(500).json({ msg: "500 Internal Server Error", err });
     })
-});
+  });
 
 // Update existing user by ID
 router.put("/:id", (req, res) => {

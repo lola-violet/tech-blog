@@ -1,20 +1,20 @@
 <div class="container">
     <div class="row mt-5">
-        <h1>Welcome back, {{userData.username}}!</h1>
+        <h1>Welcome back, {{username}}!</h1>
         <div class="card col-12 my-5">
             <div class="card-body">
                 <h2 class="card-title  mt-2 mb-3">Create a New Post</h2>
-                <form>
+                <form id="newBlog">
                     <div class="mb-3">
-                        <label for="blogTitleInput" class="form-label">Post Title</label>
-                        <input type="email" class="form-control" id="blogTitleInput" placeholder="Title">
+                        <label for="title" class="form-label">Post Title</label>
+                        <input type="text" class="form-control" id="title" placeholder="Title">
                       </div>
                       <div class="mb-3">
-                        <label for="blogContentInput" class="form-label">Post Content</label>
-                        <textarea class="form-control" id="blogContentInput" rows="6" placeholder="Content"></textarea>
+                        {{!-- <label for="content" class="form-label">Post Content</label> --}}
+                        <textarea class="form-control" id="content" rows="6" placeholder="Content"></textarea>
                     </div>
                     <div class="d-grid gap-2 my-3">
-                        <button type="button" class="btn btn-dark">Submit</button>
+                        <button type="Submit" class="btn btn-dark">Submit</button>
                     </div>
                 </form>
             </div>
@@ -27,6 +27,11 @@
     {{!-- {{#each userBlogs}} --}}
         <div class="card col-12">
             <div class="card-body">
+                    {{!-- <input type="text" class="form-control form-control-lg mt-3" value="{{title}}">
+                    <input type="text" class="form-control" value="{{body}}">
+                    <p>Posted on {{updatedAt}}</p>
+                    <button class="deleteBtn btn btn-secondary me-4" value={{id}}>Delete</button>
+                    <button class="updateBtn btn btn-secondary" value={{id}}>Update</button> --}}
               <h5 class="card-title">
                   {{!-- {{userBlogs.title}} --}}
                   </h5>
@@ -38,4 +43,4 @@
     </div>
 
 </div>
-{{!-- <script src="/js/dashboard.js"></script> --}}
+<script src="/js/dashboard.js"></script>

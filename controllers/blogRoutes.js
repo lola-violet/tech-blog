@@ -32,7 +32,14 @@ router.get("/:id", (req, res) => {
 
 // Create new blog
 router.post("/", (req, res) => {
-    Blog.create(req.body)
+    if(!req.session.user){
+      return res.status(401).json({msg:"Please log in"})
+    }
+    Blog.create({
+      title:req.body.title,
+      content:req.body.content,
+      UserId:req.session.user.id
+    })
     .then(newBlog => {
         res.json(newBlog);
     })
@@ -40,7 +47,7 @@ router.post("/", (req, res) => {
         console.log(err);
         res.status(500).json({ msg: "500 Internal Server Error", err });
     })
-});
+  });
 
 // Update existing Blog by ID
 router.put("/:id", (req, res) => {
